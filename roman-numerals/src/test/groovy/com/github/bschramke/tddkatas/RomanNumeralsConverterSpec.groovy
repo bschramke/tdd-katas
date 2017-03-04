@@ -17,6 +17,24 @@ class RomanNumeralsConverterSpec extends Specification {
     }
 
     @Unroll
+    def "should return symbol #symbol for value #value" () {
+        given: "an instance of RomanNumeralsConverter"
+            def converter = new RomanNumeralsConverter()
+
+        expect: "on input #value the symbol is #symbol"
+            converter.fromArabic(value) == symbol
+
+        where:
+            value || symbol
+            0      || 'N'
+            1      || 'I'
+            4      || 'IV'
+            5      || 'V'
+            9      || 'IX'
+           10      || 'X'
+    }
+
+    @Unroll
     def "should return #roman when input is #arabic" () {
         given: "an instance of RomanNumeralsConverter"
             def converter = new RomanNumeralsConverter()
@@ -26,16 +44,9 @@ class RomanNumeralsConverterSpec extends Specification {
 
         where:
             arabic || roman
-            0      || 'N'
-            1      || 'I'
-            2      || 'II'
             3      || 'III'
-            4      || 'IV'
-            5      || 'V'
-            6      || 'VI'
-            7      || 'VII'
             8      || 'VIII'
-            9      || 'IX'
-           10      || 'X'
+           13      || 'XIII'
+           23      || 'XXIII'
     }
 }

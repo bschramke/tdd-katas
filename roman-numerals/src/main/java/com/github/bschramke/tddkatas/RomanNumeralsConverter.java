@@ -20,7 +20,7 @@ public class RomanNumeralsConverter {
     }
 
     private int appendNumeral(final StringBuilder result, int remaining, final int value, final String symbol) {
-        if(remaining >= value) {
+        while(remaining >= value) {
             result.append(symbol);
             remaining -= value;
         }
