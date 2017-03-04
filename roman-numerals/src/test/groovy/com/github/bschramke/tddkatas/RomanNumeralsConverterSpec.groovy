@@ -56,5 +56,8 @@ class RomanNumeralsConverterSpec extends Specification {
             8      || 'VIII'
            13      || 'XIII'
            23      || 'XXIII'
+           42      || 'XLII'
+         1980      || 'MCMLXXX'
+         1948      || 'MCMXLVIII'
     }
 }
