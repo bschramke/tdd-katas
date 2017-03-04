@@ -21,7 +21,7 @@ class RomanNumeralsConverterSpec extends Specification {
         given: "an instance of RomanNumeralsConverter"
             def converter = new RomanNumeralsConverter()
 
-        expect: "on input #value the symbol is #symbol"
+        expect: "that on input #value the symbol is #symbol"
             converter.fromArabic(value) == symbol
 
         where:
@@ -47,7 +47,7 @@ class RomanNumeralsConverterSpec extends Specification {
         given: "an instance of RomanNumeralsConverter"
             def converter = new RomanNumeralsConverter()
 
-        expect: "on input #arabic the numeral is #roman"
+        expect: "that on input #arabic the numeral is #roman"
             converter.fromArabic(arabic) == roman
 
         where:
@@ -59,5 +59,31 @@ class RomanNumeralsConverterSpec extends Specification {
            42      || 'XLII'
          1980      || 'MCMLXXX'
          1948      || 'MCMXLVIII'
+    }
+
+    @Unroll
+    def "should return value #value for symbol #symbol" () {
+        given: "an instance of RomanNumeralsConverter"
+            def converter = new RomanNumeralsConverter()
+
+        expect: "that on input #symbol the value is #value"
+            converter.toArabic(symbol) == value
+
+        where:
+            value || symbol
+                0 || 'N'
+                1 || 'I'
+                4 || 'IV'
+                5 || 'V'
+                9 || 'IX'
+               10 || 'X'
+               40 || 'XL'
+               50 || 'L'
+               90 || 'XC'
+              100 || 'C'
+              400 || 'CD'
+              500 || 'D'
+              900 || 'CM'
+             1000 || 'M'
     }
 }

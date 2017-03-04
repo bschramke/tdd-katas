@@ -28,6 +28,12 @@ public class RomanNumeralsConverter {
         return result.toString();
     }
 
+    public int toArabic(final String roman) {
+        if(roman.equals("N")) return 0;
+
+        return Symbol.valueOf(roman).weight();
+    }
+
     private int appendNumeral(final StringBuilder result, int remaining, final int value, final String symbol) {
         while(0 < remaining && remaining >= value) {
             result.append(symbol);
