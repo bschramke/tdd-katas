@@ -71,7 +71,13 @@ public class RomanNumeralsConverter {
                 builder.append(next);
                 charStack.poll();
             }
+        }else if(current == 'X') {
+            if(next == 'L' || next == 'C'){
+                builder.append(next);
+                charStack.poll();
+            }
         }
+
 
         return Symbol.valueOf(builder.toString());
     }
