@@ -26,20 +26,20 @@ class RomanNumeralsConverterSpec extends Specification {
 
         where:
             value || symbol
-            0      || 'N'
-            1      || 'I'
-            4      || 'IV'
-            5      || 'V'
-            9      || 'IX'
-           10      || 'X'
-           40      || 'XL'
-           50      || 'L'
-           90      || 'XC'
-          100      || 'C'
-          400      || 'CD'
-          500      || 'D'
-          900      || 'CM'
-         1000      || 'M'
+                0 || 'N'
+                1 || 'I'
+                4 || 'IV'
+                5 || 'V'
+                9 || 'IX'
+               10 || 'X'
+               40 || 'XL'
+               50 || 'L'
+               90 || 'XC'
+              100 || 'C'
+              400 || 'CD'
+              500 || 'D'
+              900 || 'CM'
+             1000 || 'M'
     }
 
     @Unroll
@@ -52,13 +52,13 @@ class RomanNumeralsConverterSpec extends Specification {
 
         where:
             arabic || roman
-            3      || 'III'
-            8      || 'VIII'
-           13      || 'XIII'
-           23      || 'XXIII'
-           42      || 'XLII'
-         1980      || 'MCMLXXX'
-         1948      || 'MCMXLVIII'
+                 3 || 'III'
+                 8 || 'VIII'
+                13 || 'XIII'
+                23 || 'XXIII'
+                42 || 'XLII'
+              1980 || 'MCMLXXX'
+              1948 || 'MCMXLVIII'
     }
 
     @Unroll

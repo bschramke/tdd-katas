@@ -13,6 +13,16 @@ public class RomanNumeralsConverter {
         public int weight() {
             return weight;
         }
+
+        public static boolean isSymbol(final String numeral) {
+            try {
+                Symbol.valueOf(numeral);
+            }catch (IllegalArgumentException e) {
+                return false;
+            }
+
+            return true;
+        }
     }
     public String fromArabic(final int arabic) {
         if(arabic < 0) throw new IllegalArgumentException();
@@ -30,8 +40,9 @@ public class RomanNumeralsConverter {
 
     public int toArabic(final String roman) {
         if(roman.equals("N")) return 0;
+        if(Symbol.isSymbol(roman)) return Symbol.valueOf(roman).weight();
 
-        return Symbol.valueOf(roman).weight();
+        return -1;
     }
 
     private int appendNumeral(final StringBuilder result, int remaining, final int value, final String symbol) {
