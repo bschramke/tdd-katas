@@ -27,5 +27,6 @@ class RomanNumeralsConverterSpec extends Specification {
         where:
             arabic || roman
             0      || 'N'
+            1      || 'I'
     }
 }
