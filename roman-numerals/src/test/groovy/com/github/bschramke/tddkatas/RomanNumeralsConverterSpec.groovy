@@ -32,6 +32,7 @@ class RomanNumeralsConverterSpec extends Specification {
             5      || 'V'
             9      || 'IX'
            10      || 'X'
+           40      || 'XL'
     }
 
     @Unroll

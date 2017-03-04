@@ -8,6 +8,7 @@ public class RomanNumeralsConverter {
         final StringBuilder result = new StringBuilder();
         int remaining = arabic;
 
+        remaining = appendNumeral(result, remaining, 40, "XL");
         remaining = appendNumeral(result, remaining, 10, "X");
         remaining = appendNumeral(result, remaining, 9, "IX");
         remaining = appendNumeral(result, remaining, 5, "V");
