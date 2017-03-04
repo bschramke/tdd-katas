@@ -1,8 +1,8 @@
 package com.github.bschramke.tddkatas;
 
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
+import java.util.ArrayDeque;
+import java.util.EmptyStackException;
+import java.util.Queue;
 import java.util.Stack;
 
 public class RomanNumeralsConverter {
@@ -50,19 +50,47 @@ public class RomanNumeralsConverter {
         if(Symbol.isSymbol(input)) return Symbol.valueOf(input).weight();
 
         int result = 0;
-        Stack<Character> charStack = stringToStack(roman);
+        Queue<Character> charStack = stringToStack(roman);
 
-        while(!charStack.empty()) {
-            char ch = charStack.pop();
-            result += Symbol.valueOf(String.valueOf(ch)).weight();
+        while(!charStack.isEmpty()) {
+            result += parseSymbol(charStack).weight();
         }
+
         return result;
     }
 
-    private Stack<Character> stringToStack(String str) {
-        final Stack<Character> result = new Stack<>();
+    private Symbol parseSymbol(final Queue<Character> charStack) {
+        final StringBuilder builder = new StringBuilder(2);
+        final char current = charStack.poll();
+        final char next = stackPeek(charStack);
+
+        builder.append(current);
+
+        if(current == 'I') {
+            if(next == 'V' || next == 'X'){
+                builder.append(next);
+                charStack.poll();
+            }
+        }
+
+        return Symbol.valueOf(builder.toString());
+    }
+
+    private char stackPeek(Queue<Character> charStack) {
+        char nextChar = 0;
+        try {
+            nextChar = charStack.peek();
+        }catch (EmptyStackException | NullPointerException e) {
+            //nothing to do
+        }
+
+        return nextChar;
+    }
+
+    private Queue<Character> stringToStack(String str) {
+        final Queue<Character> result = new ArrayDeque<>(str.length());
         for(char c : str.toCharArray()){
-            result.push(c);
+            result.add(c);
         }
         return result;
     }

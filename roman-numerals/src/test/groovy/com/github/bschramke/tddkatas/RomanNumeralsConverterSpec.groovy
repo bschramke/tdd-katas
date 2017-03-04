@@ -73,9 +73,7 @@ class RomanNumeralsConverterSpec extends Specification {
             value || symbol
                 0 || 'N'
                 1 || 'I'
-                4 || 'IV'
                 5 || 'V'
-                9 || 'IX'
                10 || 'X'
                40 || 'XL'
                50 || 'L'
@@ -98,7 +96,23 @@ class RomanNumeralsConverterSpec extends Specification {
         where:
             arabic || roman
                  3 || 'III'
+                 8 || 'VIII'
+                23 || 'XXIII'
     }
 
+    @Unroll
+    def "should use subtraction when I is followed by V or X (#roman)" () {
+        given: "an instance of RomanNumeralsConverter"
+            def converter = new RomanNumeralsConverter()
 
+        expect: "that on input #roman the result is #arabic"
+            converter.toArabic(roman) == arabic
+
+        where:
+            arabic || roman
+                 4 || 'IV'
+                 9 || 'IX'
+                14 || 'XIV'
+                19 || 'XIX'
+    }
 }
