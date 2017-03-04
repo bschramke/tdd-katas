@@ -34,8 +34,11 @@ class RomanNumeralsConverterSpec extends Specification {
            10      || 'X'
            40      || 'XL'
            50      || 'L'
+           90      || 'XC'
           100      || 'C'
+          400      || 'CD'
           500      || 'D'
+          900      || 'CM'
          1000      || 'M'
     }
 
