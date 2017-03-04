@@ -8,18 +8,22 @@ public class RomanNumeralsConverter {
         final StringBuilder result = new StringBuilder();
         int remaining = arabic;
 
-        if(remaining >= 5) {
-            result.append("V");
-            remaining -= 5;
-        }
-        if(remaining >= 4) {
-            result.append("IV");
-            remaining -= 4;
-        }
+        remaining = appendNumeral(result, remaining, 10, "X");
+        remaining = appendNumeral(result, remaining, 9, "IX");
+        remaining = appendNumeral(result, remaining, 5, "V");
+        remaining = appendNumeral(result, remaining, 4, "IV");
         while(0 < remaining--){
             result.append('I');
         }
 
         return result.toString();
+    }
+
+    private int appendNumeral(final StringBuilder result, int remaining, final int value, final String symbol) {
+        if(remaining >= value) {
+            result.append(symbol);
+            remaining -= value;
+        }
+        return remaining;
     }
 }
