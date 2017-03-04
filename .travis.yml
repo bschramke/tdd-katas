@@ -3,6 +3,8 @@ branches:
   except:
   - master
 
+dist: trusty
+sudo: false
 language: java
 
 jdk:
