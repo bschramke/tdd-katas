@@ -1,6 +1,7 @@
 package com.github.bschramke.tddkatas
 
 import spock.lang.Specification
+import spock.lang.Unroll
 
 class RomanNumeralsConverterSpec extends Specification {
 
@@ -13,5 +14,18 @@ class RomanNumeralsConverterSpec extends Specification {
 
         then: "a IllegalArgumentException should thrown"
             thrown IllegalArgumentException
+    }
+
+    @Unroll
+    def "should return #roman when input is #arabic" () {
+        given: "an instance of RomanNumeralsConverter"
+            def converter = new RomanNumeralsConverter()
+
+        expect: "on input #arabic the numeral is #roman"
+            converter.fromArabic(arabic) == roman
+
+        where:
+            arabic || roman
+            0      || 'N'
     }
 }
