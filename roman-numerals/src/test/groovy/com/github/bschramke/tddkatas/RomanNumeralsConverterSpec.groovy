@@ -86,4 +86,19 @@ class RomanNumeralsConverterSpec extends Specification {
               900 || 'CM'
              1000 || 'M'
     }
+
+    @Unroll
+    def "should return #arabic when input is #roman" () {
+        given: "an instance of RomanNumeralsConverter"
+            def converter = new RomanNumeralsConverter()
+
+        expect: "that on input #roman the result is #arabic"
+            converter.toArabic(roman) == arabic
+
+        where:
+            arabic || roman
+                 3 || 'III'
+    }
+
+
 }
