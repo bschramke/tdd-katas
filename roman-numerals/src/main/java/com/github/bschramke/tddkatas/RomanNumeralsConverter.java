@@ -7,6 +7,11 @@ public class RomanNumeralsConverter {
 
         final StringBuilder result = new StringBuilder();
         int remaining = arabic;
+
+        if(remaining >= 4) {
+            result.append("IV");
+            remaining -= 4;
+        }
         while(0 < remaining--){
             result.append('I');
         }
