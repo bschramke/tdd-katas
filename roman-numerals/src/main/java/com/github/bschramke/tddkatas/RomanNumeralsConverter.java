@@ -3,7 +3,6 @@ package com.github.bschramke.tddkatas;
 import java.util.ArrayDeque;
 import java.util.EmptyStackException;
 import java.util.Queue;
-import java.util.Stack;
 
 public class RomanNumeralsConverter {
     public enum Symbol {
@@ -17,6 +16,10 @@ public class RomanNumeralsConverter {
 
         public int weight() {
             return weight;
+        }
+
+        public Symbol valueOf(char ch){
+            return Symbol.valueOf(String.valueOf(ch));
         }
 
         public static boolean isSymbol(final String numeral) {
@@ -73,6 +76,11 @@ public class RomanNumeralsConverter {
             }
         }else if(current == 'X') {
             if(next == 'L' || next == 'C'){
+                builder.append(next);
+                charStack.poll();
+            }
+        }else if(current == 'C') {
+            if(next == 'D' || next == 'M'){
                 builder.append(next);
                 charStack.poll();
             }

@@ -77,9 +77,7 @@ class RomanNumeralsConverterSpec extends Specification {
                10 || 'X'
                50 || 'L'
               100 || 'C'
-              400 || 'CD'
               500 || 'D'
-              900 || 'CM'
              1000 || 'M'
     }
 
@@ -128,5 +126,21 @@ class RomanNumeralsConverterSpec extends Specification {
                 90 || 'XC'
                140 || 'CXL'
                290 || 'CCXC'
+    }
+    
+    @Unroll
+    def "should use subtraction when C is followed by D or M [in: #roman, out: #arabic]" () {
+        given: "an instance of RomanNumeralsConverter"
+            def converter = new RomanNumeralsConverter()
+
+        expect: "that on input #roman the result is #arabic"
+            converter.toArabic(roman) == arabic
+
+        where:
+            arabic || roman
+               400 || 'CD'
+               900 || 'CM'
+              1948 || 'MCMXLVIII'
+              2490 || 'MMCDXC'
     }
 }
