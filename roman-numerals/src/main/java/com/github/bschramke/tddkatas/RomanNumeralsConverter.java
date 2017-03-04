@@ -8,6 +8,10 @@ public class RomanNumeralsConverter {
         final StringBuilder result = new StringBuilder();
         int remaining = arabic;
 
+        if(remaining >= 5) {
+            result.append("V");
+            remaining -= 5;
+        }
         if(remaining >= 4) {
             result.append("IV");
             remaining -= 4;
