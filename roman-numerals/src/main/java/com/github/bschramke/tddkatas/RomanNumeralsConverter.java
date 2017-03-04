@@ -5,33 +5,6 @@ import java.util.EmptyStackException;
 import java.util.Queue;
 
 public class RomanNumeralsConverter {
-    public enum Symbol {
-        M(1000),CM(900),D(500),CD(400),C(100),XC(90),L(50),XL(40),X(10),IX(9),V(5),IV(4),I(1);
-
-        private final int weight;
-
-        Symbol(int weight) {
-            this.weight = weight;
-        }
-
-        public int weight() {
-            return weight;
-        }
-
-        public Symbol valueOf(char ch){
-            return Symbol.valueOf(String.valueOf(ch));
-        }
-
-        public static boolean isSymbol(final String numeral) {
-            try {
-                Symbol.valueOf(numeral);
-            }catch (IllegalArgumentException e) {
-                return false;
-            }
-
-            return true;
-        }
-    }
     public String fromArabic(final int arabic) {
         if(arabic < 0) throw new IllegalArgumentException();
         if(arabic == 0) return "N";
@@ -39,7 +12,7 @@ public class RomanNumeralsConverter {
         final StringBuilder result = new StringBuilder();
         int remaining = arabic;
 
-        for(Symbol symbol : Symbol.values()) {
+        for(RomanNumeral symbol : RomanNumeral.values()) {
             remaining = appendNumeral(result, remaining, symbol.weight(), symbol.name());
         }
 
@@ -50,7 +23,7 @@ public class RomanNumeralsConverter {
         final String input = roman.toUpperCase();
 
         if(input.equals("N")) return 0;
-        if(Symbol.isSymbol(input)) return Symbol.valueOf(input).weight();
+        if(RomanNumeral.isSymbol(input)) return RomanNumeral.valueOf(input).weight();
 
         int result = 0;
         Queue<Character> charStack = stringToStack(roman);
@@ -62,32 +35,19 @@ public class RomanNumeralsConverter {
         return result;
     }
 
-    private Symbol parseSymbol(final Queue<Character> charStack) {
+    private RomanNumeral parseSymbol(final Queue<Character> charStack) {
         final StringBuilder builder = new StringBuilder(2);
         final char current = charStack.poll();
         final char next = stackPeek(charStack);
 
         builder.append(current);
 
-        if(current == 'I') {
-            if(next == 'V' || next == 'X'){
+        if(RomanNumeral.isSubstractionAllowed(current,next)) {
                 builder.append(next);
                 charStack.poll();
-            }
-        }else if(current == 'X') {
-            if(next == 'L' || next == 'C'){
-                builder.append(next);
-                charStack.poll();
-            }
-        }else if(current == 'C') {
-            if(next == 'D' || next == 'M'){
-                builder.append(next);
-                charStack.poll();
-            }
         }
 
-
-        return Symbol.valueOf(builder.toString());
+        return RomanNumeral.valueOf(builder.toString());
     }
 
     private char stackPeek(Queue<Character> charStack) {
