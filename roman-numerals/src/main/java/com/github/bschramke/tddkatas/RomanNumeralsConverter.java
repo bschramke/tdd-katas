@@ -6,7 +6,7 @@ import java.util.Queue;
 
 public class RomanNumeralsConverter {
     public String fromArabic(final int arabic) {
-        if(arabic < 0) throw new IllegalArgumentException();
+        if(arabic < 0 || arabic > 3999) throw new IllegalArgumentException();
         if(arabic == 0) return "N";
 
         final StringBuilder result = new StringBuilder();
