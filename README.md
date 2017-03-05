@@ -15,4 +15,4 @@ You can find my solutions on specific branches per language and testing framewor
 
 | branch | description | build status |
 | :--- | :---: | ---: |
-| [java-spock](https://github.com/bschramke/tdd-katas/tree/java-spock) | implementation with Java8 using Spock as testing framework| [![Build Status](https://travis-ci.org/bschramke/tdd-katas.svg?branch=java-spock)](https://travis-ci.org/bschramke/tdd-katas)    |
+| [java-spock](https://github.com/bschramke/tdd-katas/tree/java-spock) | implementation with Java using Spock as testing framework| [![Build Status](https://travis-ci.org/bschramke/tdd-katas.svg?branch=java-spock)](https://travis-ci.org/bschramke/tdd-katas)    |
